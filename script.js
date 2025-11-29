@@ -1879,6 +1879,8 @@ function finishQuestion() {
 closeQuestionBtn.addEventListener("click", () => {
   questionModal.classList.add("hidden");
   stopTimer();
+  if (modalTimerEl) modalTimerEl.textContent = "00:00";
+
   phase = "idle";
   currentQuestion = null;
   currentCategoryId = null;
@@ -1943,5 +1945,6 @@ function applyCallFriend() {
 // ========= تهيئة أولية =========
 updateLifelinesUI();
 console.log("SeenGame-board loaded ✅");
+
 
 

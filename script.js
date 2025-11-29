@@ -7,7 +7,7 @@ const CATEGORIES = [
     id: "general",
     name: "ثقافة عامة",
     tag: "أسئلة منوعة",
-    image: "images/general.png",
+    image: "general.png",
     questions: [
       // 100
       {
@@ -56,7 +56,7 @@ const CATEGORIES = [
     id: "islamic",
     name: "إسلاميات",
     tag: "قرآن وسيرة وفقه",
-    image: "images/islamic.png",
+    image: "islamic.png",
     questions: [
       // 100
       {
@@ -105,7 +105,7 @@ const CATEGORIES = [
     id: "science",
     name: "علوم",
     tag: "كيمياء وفيزياء وأحياء",
-    image: "images/science.png",
+    image: "science.png",
     questions: [
       // 100
       {
@@ -154,7 +154,7 @@ const CATEGORIES = [
     id: "history",
     name: "تاريخ",
     tag: "أحداث وشخصيات",
-    image: "images/history.png",
+    image: "history.png",
     questions: [
       // 100
       {
@@ -203,7 +203,7 @@ const CATEGORIES = [
     id: "sports",
     name: "رياضة",
     tag: "مختلف الألعاب",
-    image: "images/sports.png",
+    image: "sports.png",
     questions: [
       // 100
       {
@@ -252,7 +252,7 @@ const CATEGORIES = [
     id: "puzzle",
     name: "ألغاز",
     tag: "تفكير وحدس",
-    image: "images/puzzle.png",
+    image: "puzzle.png",
     questions: [
       // 100
       {
@@ -301,7 +301,7 @@ const CATEGORIES = [
     id: "which_country",
     name: "ماهي الدولة",
     tag: "خمن الدولة من الوصف",
-    image: "images/which_country.png",
+    image: "which_country.png",
     questions: [
       // 100
       {
@@ -350,7 +350,7 @@ const CATEGORIES = [
     id: "copa_america",
     name: "كوبا أمريكا",
     tag: "بطولة منتخبات أمريكا الجنوبية",
-    image: "images/copa_america.png",
+    image: "copa_america.png",
     questions: [
       // 100
       {
@@ -399,7 +399,7 @@ const CATEGORIES = [
     id: "euro_cup",
     name: "أمم أوروبا",
     tag: "بطولة المنتخبات الأوروبية",
-    image: "images/euro_cup.png",
+    image: "euro_cup.png",
     questions: [
       // 100
       {
@@ -448,7 +448,7 @@ const CATEGORIES = [
     id: "premier_2526",
     name: "PL 25/26",
     tag: "أسئلة عن الدوري الإنجليزي",
-    image: "images/premier_2526.png",
+    image: "premier_2526.png",
     questions: [
       // 100
       {
@@ -497,7 +497,7 @@ const CATEGORIES = [
     id: "saudi_arabia",
     name: "السعودية",
     tag: "معلومات عن المملكة",
-    image: "images/saudi_arabia.png",
+    image: "saudi_arabia.png",
     questions: [
       // 100
       {
@@ -546,7 +546,7 @@ const CATEGORIES = [
     id: "western_region",
     name: "الغربية",
     tag: "مدن ومناطق في غرب السعودية",
-    image: "images/western_region.png",
+    image: "western_region.png",
     questions: [
       // 100
       {
@@ -595,7 +595,7 @@ const CATEGORIES = [
     id: "saudi_logos",
     name: "شعارات سعودية",
     tag: "شعارات أندية وشركات سعودية",
-    image: "images/saudi_logos.png",
+    image: "saudi_logos.png",
     questions: [
       // 100
       {
@@ -644,7 +644,7 @@ const CATEGORIES = [
     id: "saudi_restaurants",
     name: "مطاعم سعودية",
     tag: "مطاعم مشهورة داخل السعودية",
-    image: "images/saudi_restaurants.png",
+    image: "saudi_restaurants.png",
     questions: [
       // 100
       {
@@ -693,7 +693,7 @@ const CATEGORIES = [
     id: "global_logos",
     name: "شعارات عالمية",
     tag: "شركات وعلامات دولية",
-    image: "images/global_logos.png",
+    image: "global_logos.png",
     questions: [
       // 100
       {
@@ -742,7 +742,7 @@ const CATEGORIES = [
     id: "cars",
     name: "سيارات",
     tag: "ماركات ومعلومات سيارات",
-    image: "images/cars.png",
+    image: "cars.png",
     questions: [
       // 100
       {
@@ -791,7 +791,7 @@ const CATEGORIES = [
     id: "prophet_seerah",
     name: "السيرة النبوية",
     tag: "أحداث من حياة النبي ﷺ",
-    image: "images/prophet_seerah.png",
+    image: "prophet_seerah.png",
     questions: [
       // 100
       {
@@ -840,7 +840,7 @@ const CATEGORIES = [
     id: "flags",
     name: "أعلام",
     tag: "أعلام دول مختلفة",
-    image: "images/flags.png",
+    image: "flags.png",
     questions: [
       // 100
       {
@@ -889,7 +889,7 @@ const CATEGORIES = [
     id: "currencies",
     name: "عملات",
     tag: "عملات دول مختلفة",
-    image: "images/currencies.png",
+    image: "currencies.png",
     questions: [
       // 100
       {
@@ -938,7 +938,7 @@ const CATEGORIES = [
     id: "letters",
     name: "حروف",
     tag: "كلمات تبدأ بحروف معيّنة",
-    image: "images/letters.png",
+    image: "letters.png",
     questions: [
       // 100
       {
@@ -987,7 +987,7 @@ const CATEGORIES = [
     id: "guess_image",
     name: "خمن الصورة",
     tag: "أسئلة تعتمد على صورة يوضحها المنظّم",
-    image: "images/guess_image.png",
+    image: "guess_image.png",
     questions: [
       // 100
       {
@@ -1036,7 +1036,7 @@ const CATEGORIES = [
     id: "gulf_cup",
     name: "كأس الخليج",
     tag: "بطولة منتخبات الخليج",
-    image: "images/gulf_cup.png",
+    image: "gulf_cup.png",
     questions: [
       // 100
       {
@@ -1085,7 +1085,7 @@ const CATEGORIES = [
     id: "el_clasico",
     name: "الكلاسيكو بين برشلونة وريال مدريد",
     tag: "أشهر مباراة في إسبانيا",
-    image: "images/el_clasico.png",
+    image: "el_clasico.png",
     questions: [
       // 100
       {
@@ -1134,7 +1134,7 @@ const CATEGORIES = [
     id: "player_career",
     name: "مسيرة اللاعب",
     tag: "من الأندية تتعرف على اللاعب",
-    image: "images/player_career.png",
+    image: "player_career.png",
     questions: [
       // 100
       {
@@ -1183,7 +1183,7 @@ const CATEGORIES = [
     id: "player_number",
     name: "رقم اللاعب",
     tag: "تعرف على اللاعب من رقمه",
-    image: "images/player_number.png",
+    image: "player_number.png",
     questions: [
       // 100
       {
@@ -1232,7 +1232,7 @@ const CATEGORIES = [
     id: "who_is_player",
     name: "من هو اللاعب",
     tag: "تعرف على اللاعب من الوصف",
-    image: "images/who_is_player.png",
+    image: "who_is_player.png",
     questions: [
       // 100
       {
@@ -1281,7 +1281,7 @@ const CATEGORIES = [
     id: "saudi_league",
     name: "الدوري السعودي",
     tag: "أندية ولاعبين من دوري روشن",
-    image: "images/saudi_league.png",
+    image: "saudi_league.png",
     questions: [
       // 100
       {
@@ -1330,7 +1330,7 @@ const CATEGORIES = [
     id: "football_logos",
     name: "شعارات كروية",
     tag: "شعارات أندية كرة قدم",
-    image: "images/football_logos.png",
+    image: "football_logos.png",
     questions: [
       // 100
       {
@@ -1379,7 +1379,7 @@ const CATEGORIES = [
     id: "guess_football_image",
     name: "خمن الصورة كروية",
     tag: "صور لاعبين وملاعب",
-    image: "images/guess_football_image.png",
+    image: "guess_football_image.png",
     questions: [
       // 100
       {
@@ -1930,3 +1930,4 @@ function applyCallFriend() {
 // ========= تهيئة أولية =========
 updateLifelinesUI();
 console.log("SeenGame-board loaded ✅");
+

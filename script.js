@@ -1456,7 +1456,7 @@ const team2ScoreEl = document.getElementById("team2-score");
 const currentTeamLabelEl = document.getElementById("current-team-label");
 const team1BoxEl = document.getElementById("team1-box");
 const team2BoxEl = document.getElementById("team2-box");
-const timerEl = document.getElementById("timer");
+const modalTimerEl = document.getElementById("modal-timer");
 
 // مودال السؤال
 const questionModal = document.getElementById("question-modal");
@@ -1930,3 +1930,4 @@ function applyCallFriend() {
 // ========= تهيئة أولية =========
 updateLifelinesUI();
 console.log("SeenGame-board loaded ✅");
+

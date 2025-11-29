@@ -101,20 +101,37 @@
         <!-- مافيه وسائل مساعدة هنا الآن، صارت داخل المودال -->
 
         <!-- مودال السؤال -->
-       <div id="question-modal" class="modal hidden">
-         <div class="modal-content">
-           <div class="modal-header">
-              <div class="modal-header-left">
-                <span id="modal-category-label"></span>
-                <span id="modal-points-label"></span>
-              </div>
-              <div class="modal-header-right">
-                <span id="modal-timer">00:00</span>
-              </div>
-            </div>
-            <!-- باقي محتوى المودال مثل السؤال والخيارات ووسائل المساعدة -->
-          </div>
-        </div>
+       <!-- مودال السؤال -->
+<div id="question-modal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span id="modal-category-label" class="badge"></span>
+        <span id="modal-points-label" class="points-chip"></span>
+      </div>
+      <div class="modal-header-right">
+        <!-- هذا هو التايمر داخل السؤال -->
+        <span id="modal-timer">01:00</span>
+      </div>
+    </div>
+
+    <h2 id="question-text" class="question-text">هنا يظهر السؤال...</h2>
+
+    <div id="options-container" class="options">
+      <button class="option-btn" data-index="0"></button>
+      <button class="option-btn" data-index="1"></button>
+      <button class="option-btn" data-index="2"></button>
+      <button class="option-btn" data-index="3"></button>
+    </div>
+
+    <div class="game-bottom">
+      <div id="status-text" class="status"></div>
+      <div class="controls centered">
+        <button id="close-question-btn" class="primary-btn">إنهاء السؤال</button>
+      </div>
+    </div>
+  </div>
+</div>
 
             <!-- وسائل المساعدة داخل شاشة السؤال -->
             <div class="lifelines-inline">
@@ -161,5 +178,6 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 

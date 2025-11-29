@@ -100,23 +100,24 @@
 
         <!-- مافيه وسائل مساعدة هنا الآن، صارت داخل المودال -->
 
-        <!-- مودال السؤال -->
-       <!-- مودال السؤال -->
-<div id="question-modal" class="modal hidden">
-  <div class="modal-content">
+<!-- مودال السؤال (كرت ثابت تحت اللوحة) -->
+<div id="question-modal" class="question-modal hidden">
+  <div class="question-card">
+    <!-- هيدر السؤال: فئة + نقاط + عداد الوقت -->
     <div class="modal-header">
       <div class="modal-header-left">
         <span id="modal-category-label" class="badge"></span>
         <span id="modal-points-label" class="points-chip"></span>
       </div>
       <div class="modal-header-right">
-        <!-- هذا هو التايمر داخل السؤال -->
-        <span id="modal-timer">01:00</span>
+        <span id="modal-timer">00:00</span>
       </div>
     </div>
 
+    <!-- نص السؤال -->
     <h2 id="question-text" class="question-text">هنا يظهر السؤال...</h2>
 
+    <!-- الخيارات -->
     <div id="options-container" class="options">
       <button class="option-btn" data-index="0"></button>
       <button class="option-btn" data-index="1"></button>
@@ -124,60 +125,44 @@
       <button class="option-btn" data-index="3"></button>
     </div>
 
+    <!-- حالة السؤال + زر الإنهاء -->
     <div class="game-bottom">
       <div id="status-text" class="status"></div>
       <div class="controls centered">
         <button id="close-question-btn" class="primary-btn">إنهاء السؤال</button>
       </div>
     </div>
+
+    <!-- وسائل المساعدة داخل السؤال -->
+    <div class="lifelines-inline">
+      <div class="lifelines-title">
+        رسائل مساعدة – <span id="lifeline-team-name">الفريق 1</span>
+      </div>
+      <div class="lifelines-buttons">
+        <button class="lifeline-btn" data-type="fifty">
+          حذف إجابتين (<span id="lifeline-fifty-count">1</span>)
+        </button>
+        <button class="lifeline-btn" data-type="call">
+          اتصال بصديق (<span id="lifeline-call-count">1</span>)
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
-            <!-- وسائل المساعدة داخل شاشة السؤال -->
-            <div class="lifelines-inline">
-              <div class="lifelines-title">
-                وسائل مساعدة - <span id="lifeline-team-name">الفريق 1</span>
-              </div>
-              <div class="lifelines-buttons">
-                <button class="lifeline-btn" data-type="fifty">
-                  حذف إجابتين (<span id="lifeline-fifty-count">1</span>)
-                </button>
-                <button class="lifeline-btn" data-type="call">
-                  اتصال بصديق (<span id="lifeline-call-count">1</span>)
-                </button>
-              </div>
-            </div>
+</main>
 
-            <h2 id="question-text" class="question-text">هنا يظهر السؤال...</h2>
-            <div id="options-container" class="options">
-              <button class="option-btn" data-index="0"></button>
-              <button class="option-btn" data-index="1"></button>
-              <button class="option-btn" data-index="2"></button>
-              <button class="option-btn" data-index="3"></button>
-            </div>
 
-            <div class="game-bottom">
-              <div id="status-text" class="status"></div>
-              <div class="controls centered">
-                <button id="close-question-btn" class="primary-btn" disabled>إنهاء السؤال</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-    </main>
-
-    <footer class="app-footer">
-      <small> اللعبة من شغل Dose 👑 </small>
-    </footer>
+<footer class="app-footer">
+  <small> اللعبة من شغل Dose 👑 </small>
+</footer>
 
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

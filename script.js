@@ -1532,28 +1532,22 @@ function startTimer(seconds) {
   stopTimer();
   remainingSeconds = seconds;
 
-  // نحدث الهيدر إذا موجود
-  if (timerEl) {
-    timerEl.textContent = formatTime(remainingSeconds);
-  }
-  // نحدث تايمر المودال إذا موجود
-  if (modalTimerEl) {
-    modalTimerEl.textContent = formatTime(remainingSeconds);
-  }
+  const formatted = formatTime(remainingSeconds);
+  // تايمر العنوان فوق
+  if (timerEl) timerEl.textContent = formatted;
+  // تايمر داخل السؤال
+  if (modalTimerEl) modalTimerEl.textContent = formatted;
 
   timerIntervalId = setInterval(() => {
     remainingSeconds -= 1;
 
-    if (remainingSeconds <= 0) {
-      if (timerEl) timerEl.textContent = "00:00";
-      if (modalTimerEl) modalTimerEl.textContent = "00:00";
+    const f = formatTime(Math.max(remainingSeconds, 0));
+    if (timerEl) timerEl.textContent = f;
+    if (modalTimerEl) modalTimerEl.textContent = f;
 
+    if (remainingSeconds <= 0) {
       stopTimer();
       handleTimeUp();
-    } else {
-      const t = formatTime(remainingSeconds);
-      if (timerEl) timerEl.textContent = t;
-      if (modalTimerEl) modalTimerEl.textContent = t;
     }
   }, 1000);
 }
@@ -1946,6 +1940,7 @@ function applyCallFriend() {
 // ========= تهيئة أولية =========
 updateLifelinesUI();
 console.log("SeenGame-board loaded ✅");
+
 
 
 

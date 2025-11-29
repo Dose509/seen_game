@@ -101,12 +101,20 @@
         <!-- مافيه وسائل مساعدة هنا الآن، صارت داخل المودال -->
 
         <!-- مودال السؤال -->
-        <div id="question-modal" class="question-modal hidden">
-          <div class="question-card">
-            <div class="question-header">
-              <span id="modal-category-label" class="badge"></span>
-              <span id="modal-points-label" class="points-chip"></span>
+       <div id="question-modal" class="modal hidden">
+         <div class="modal-content">
+           <div class="modal-header">
+              <div class="modal-header-left">
+                <span id="modal-category-label"></span>
+                <span id="modal-points-label"></span>
+              </div>
+              <div class="modal-header-right">
+                <span id="modal-timer">00:00</span>
+              </div>
             </div>
+            <!-- باقي محتوى المودال مثل السؤال والخيارات ووسائل المساعدة -->
+          </div>
+        </div>
 
             <!-- وسائل المساعدة داخل شاشة السؤال -->
             <div class="lifelines-inline">
@@ -153,4 +161,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>لعبة سين جيم</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="app-header">
+      <h1>لعبة سين جيم</h1>
+      <p class="subtitle">جهِّز الفرق، اختر الفئات، وابدأ التحدي 🔥</p>
+    </header>
+
+    <main>
+
+      <!-- شاشة 1: أسماء الفرق -->
+      <section id="teams-screen" class="game-card">
+        <h2 class="section-title">حدد معلومات الفرق</h2>
+        <p class="section-hint">اكتب أسماء الفريقين ثم اضغط التالي.</p>
+
+        <div class="teams-setup big">
+          <div class="team-input">
+            <label for="team1-input">الفريق الأول</label>
+            <input id="team1-input" type="text" placeholder="مثلاً: فريق A" />
+          </div>
+          <div class="team-input">
+            <label for="team2-input">الفريق الثاني</label>
+            <input id="team2-input" type="text" placeholder="مثلاً: فريق B" />
+          </div>
+        </div>
+
+        <div class="controls centered">
+          <button id="to-categories-btn" class="primary-btn">التالي: اختيار الفئات</button>
+        </div>
+      </section>
+
+      <!-- شاشة 2: اختيار ٦ فئات -->
+      <section id="categories-screen" class="game-card hidden">
+        <h2 class="section-title">اختر ٦ فئات</h2>
+        <p class="section-hint">
+          اضغط على الفئات لإضافتها للوحة اللعبة. يجب اختيار <strong>٦ فئات بالضبط</strong>.
+        </p>
+
+        <div class="selected-counter">
+          الفئات المحددة: <span id="selected-count">0</span> / 6
+        </div>
+
+        <div id="categories-grid" class="category-grid">
+          <!-- من الجافاسكربت -->
+        </div>
+
+        <div class="controls spaced">
+          <button id="back-to-teams-btn" class="ghost-btn small-btn">الرجوع للفرق</button>
+          <button id="start-game-btn" class="primary-btn" disabled>ابدأ اللعب</button>
+        </div>
+      </section>
+
+      <!-- شاشة 3: لوحة اللعبة -->
+      <section id="board-screen" class="board-screen hidden">
+
+        <header class="board-header">
+          <div class="teams-score-top">
+            <div class="team-score-box" id="team1-box">
+              <div class="team-name" id="team1-name">الفريق 1</div>
+              <div class="team-score">
+                <span id="team1-score">0</span> نقطة
+              </div>
+            </div>
+
+            <div class="turn-indicator">
+              الدور الحالي:
+              <span id="current-team-label">الفريق 1</span>
+            </div>
+
+            <div class="team-score-box" id="team2-box">
+              <div class="team-name" id="team2-name">الفريق 2</div>
+              <div class="team-score">
+                <span id="team2-score">0</span> نقطة
+              </div>
+            </div>
+          </div>
+
+          <div class="timer-box">
+            ⏱️ الوقت: <span id="timer">01:00</span>
+          </div>
+        </header>
+
+        <div id="board-container" class="board-container">
+          <!-- الأعمدة من الجافاسكربت -->
+        </div>
+
+        <footer class="board-footer">
+          <button id="back-to-categories-btn" class="ghost-btn small-btn">
+            الرجوع لاختيار الفئات
+          </button>
+        </footer>
+
+        <!-- مافيه وسائل مساعدة هنا الآن، صارت داخل المودال -->
+
+        <!-- مودال السؤال -->
+        <div id="question-modal" class="question-modal hidden">
+          <div class="question-card">
+            <div class="question-header">
+              <span id="modal-category-label" class="badge"></span>
+              <span id="modal-points-label" class="points-chip"></span>
+            </div>
+
+            <!-- وسائل المساعدة داخل شاشة السؤال -->
+            <div class="lifelines-inline">
+              <div class="lifelines-title">
+                وسائل مساعدة - <span id="lifeline-team-name">الفريق 1</span>
+              </div>
+              <div class="lifelines-buttons">
+                <button class="lifeline-btn" data-type="fifty">
+                  حذف إجابتين (<span id="lifeline-fifty-count">1</span>)
+                </button>
+                <button class="lifeline-btn" data-type="call">
+                  اتصال بصديق (<span id="lifeline-call-count">1</span>)
+                </button>
+              </div>
+            </div>
+
+            <h2 id="question-text" class="question-text">هنا يظهر السؤال...</h2>
+            <div id="options-container" class="options">
+              <button class="option-btn" data-index="0"></button>
+              <button class="option-btn" data-index="1"></button>
+              <button class="option-btn" data-index="2"></button>
+              <button class="option-btn" data-index="3"></button>
+            </div>
+
+            <div class="game-bottom">
+              <div id="status-text" class="status"></div>
+              <div class="controls centered">
+                <button id="close-question-btn" class="primary-btn" disabled>إنهاء السؤال</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <small>اللعبة من شغل علي 👑 — نسخة تجريبية</small>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1530,16 +1530,29 @@ function stopTimer() {
 function startTimer(seconds) {
   stopTimer();
   remainingSeconds = seconds;
-  timerEl.textContent = formatTime(remainingSeconds);
+
+  // نحدث الهيدر إذا موجود
+  if (timerEl) {
+    timerEl.textContent = formatTime(remainingSeconds);
+  }
+  // نحدث تايمر المودال إذا موجود
+  if (modalTimerEl) {
+    modalTimerEl.textContent = formatTime(remainingSeconds);
+  }
 
   timerIntervalId = setInterval(() => {
     remainingSeconds -= 1;
+
     if (remainingSeconds <= 0) {
-      timerEl.textContent = "00:00";
+      if (timerEl) timerEl.textContent = "00:00";
+      if (modalTimerEl) modalTimerEl.textContent = "00:00";
+
       stopTimer();
       handleTimeUp();
     } else {
-      timerEl.textContent = formatTime(remainingSeconds);
+      const t = formatTime(remainingSeconds);
+      if (timerEl) timerEl.textContent = t;
+      if (modalTimerEl) modalTimerEl.textContent = t;
     }
   }, 1000);
 }
@@ -1930,4 +1943,5 @@ function applyCallFriend() {
 // ========= تهيئة أولية =========
 updateLifelinesUI();
 console.log("SeenGame-board loaded ✅");
+
 

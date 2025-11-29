@@ -1,6 +1,5 @@
 // ========= بيانات الفئات والأسئلة =========
-// تقدر تزود عدد الأسئلة لكل فئة براحتك
-// اللعبة تختار عشوائياً 2 أسئلة من كل مستوى نقاط (100 / 300 / 500) لكل فئة يتم اختيارها
+// لكل فئة 6 أسئلة: صف 100 (يمين/يسار) ، صف 300 ، صف 500
 
 const CATEGORIES = [
   // ========== 1) ثقافة عامة ==========
@@ -1506,33 +1505,7 @@ const lifelines = {
   2: { fifty: 1, call: 1 },
 };
 
-// ========= دوال مساعدة للأسئلة =========
-function groupQuestionsByPoints(cat) {
-  const result = {
-    100: [],
-    300: [],
-    500: [],
-  };
-
-  cat.questions.forEach((q, idx) => {
-    if (result[q.points]) {
-      result[q.points].push({ index: idx, question: q });
-    }
-  });
-
-  return result;
-}
-
-function pickRandomQuestions(arr, count) {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy.slice(0, Math.min(count, copy.length));
-}
-
-// ========= دوال مساعدة عامة =========
+// ========= دوال مساعدة =========
 function formatTime(seconds) {
   const s = seconds % 60;
   const m = Math.floor(seconds / 60);
@@ -1585,6 +1558,7 @@ function getCurrentTeamName() {
 }
 
 function updateLifelinesUI() {
+  // نعرض فقط وسائل مساعدة الفريق الحالي
   lifelineTeamNameEl.textContent = getCurrentTeamName();
   lifelineFiftyCountEl.textContent = lifelines[currentTeam].fifty;
   lifelineCallCountEl.textContent = lifelines[currentTeam].call;
@@ -1671,6 +1645,7 @@ startGameBtn.addEventListener("click", () => {
   nextStartingTeam = 1;
   setActiveTeamUI();
 
+  // إعادة تعيين وسائل المساعدة
   lifelines[1] = { fifty: 1, call: 1 };
   lifelines[2] = { fifty: 1, call: 1 };
   updateLifelinesUI();
@@ -1718,24 +1693,19 @@ function buildBoard() {
       <div class="column-title">${cat.name}</div>
     `;
 
-    const grouped = groupQuestionsByPoints(cat);
+    // 3 صفوف: [0,1]  [2,3]  [4,5]
+    const indexPairs = [
+      [0, 1],
+      [2, 3],
+      [4, 5],
+    ];
 
-    [100, 300, 500].forEach((points) => {
-      const candidates = grouped[points] || [];
-      const chosen = pickRandomQuestions(candidates, 2);
+    indexPairs.forEach(([leftIndex, rightIndex]) => {
+      const leftTile = createTile(cat, leftIndex);
+      if (leftTile) leftCol.appendChild(leftTile);
 
-      const leftMeta = chosen[0];
-      const rightMeta = chosen[1];
-
-      if (leftMeta) {
-        const leftTile = createTile(cat, leftMeta.index);
-        if (leftTile) leftCol.appendChild(leftTile);
-      }
-
-      if (rightMeta) {
-        const rightTile = createTile(cat, rightMeta.index);
-        if (rightTile) rightCol.appendChild(rightTile);
-      }
+      const rightTile = createTile(cat, rightIndex);
+      if (rightTile) rightCol.appendChild(rightTile);
     });
 
     layout.appendChild(leftCol);
@@ -1794,7 +1764,7 @@ function handleTileClick(tile) {
   });
 
   statusTextEl.textContent = "";
-  closeQuestionBtn.disabled = false;
+  closeQuestionBtn.disabled = false; // نخليه يقدر يقفل بعد ما يخلص
 
   startTimer(FIRST_CHANCE_SECONDS);
   questionModal.classList.remove("hidden");
@@ -1953,11 +1923,10 @@ function applyCallFriend() {
     statusTextEl.textContent = "اتصال بصديق فقط في فرصة الفريق الأولى.";
     return;
   }
-  startTimer(CALL_FRIEND_SECONDS);
+  startTimer(CALL_FRIEND_SECONDS); // 1:30
   statusTextEl.textContent = "اتصال بصديق 🔔 لديك دقيقة ونصف للتشاور.";
 }
 
 // ========= تهيئة أولية =========
 updateLifelinesUI();
 console.log("SeenGame-board loaded ✅");
-

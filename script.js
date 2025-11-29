@@ -1429,7 +1429,7 @@ const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
 
 // ========= عناصر DOM =========
 
-// شاشات
+// الشاشات
 const teamsScreen = document.getElementById("teams-screen");
 const categoriesScreen = document.getElementById("categories-screen");
 const boardScreen = document.getElementById("board-screen");
@@ -1445,7 +1445,7 @@ const selectedCountEl = document.getElementById("selected-count");
 const backToTeamsBtn = document.getElementById("back-to-teams-btn");
 const startGameBtn = document.getElementById("start-game-btn");
 
-// لوحة
+// لوحة اللعبة
 const boardContainer = document.getElementById("board-container");
 const backToCategoriesBtn = document.getElementById("back-to-categories-btn");
 
@@ -1456,10 +1456,13 @@ const team2ScoreEl = document.getElementById("team2-score");
 const currentTeamLabelEl = document.getElementById("current-team-label");
 const team1BoxEl = document.getElementById("team1-box");
 const team2BoxEl = document.getElementById("team2-box");
-const timerEl = document.getElementById("timer");
+
+// العداد العلوي (فوق اللوحة)
+const headerTimerEl = document.getElementById("timer");
+// العداد داخل كرت السؤال
 const modalTimerEl = document.getElementById("modal-timer");
 
-// مودال السؤال
+// كرت السؤال
 const questionModal = document.getElementById("question-modal");
 const modalCategoryLabel = document.getElementById("modal-category-label");
 const modalPointsLabel = document.getElementById("modal-points-label");
@@ -1468,7 +1471,7 @@ const optionsButtons = Array.from(document.querySelectorAll(".option-btn"));
 const statusTextEl = document.getElementById("status-text");
 const closeQuestionBtn = document.getElementById("close-question-btn");
 
-// lifelines داخل المودال
+// وسائل المساعدة
 const lifelineTeamNameEl = document.getElementById("lifeline-team-name");
 const lifelineFiftyCountEl = document.getElementById("lifeline-fifty-count");
 const lifelineCallCountEl = document.getElementById("lifeline-call-count");
@@ -1480,12 +1483,12 @@ let team2Name = "الفريق 2";
 let team1Score = 0;
 let team2Score = 0;
 
-let currentTeam = 1; // 1 أو 2
-let nextStartingTeam = 1; // من يبدأ السؤال القادم
+let currentTeam = 1;       // 1 أو 2
+let nextStartingTeam = 1;  // من يبدأ السؤال القادم
 
 const FIRST_CHANCE_SECONDS = 60;
 const SECOND_CHANCE_SECONDS = 15;
-const CALL_FRIEND_SECONDS = 90; // 1:30
+const CALL_FRIEND_SECONDS = 90; // دقيقة ونصف
 
 let timerIntervalId = null;
 let remainingSeconds = FIRST_CHANCE_SECONDS;
@@ -1500,7 +1503,7 @@ let currentQuestionIndex = null;
 let currentQuestion = null;
 let currentTileButton = null;
 
-// lifelines state لكل فريق
+// حالة وسائل المساعدة لكل فريق
 const lifelines = {
   1: { fifty: 1, call: 1 },
   2: { fifty: 1, call: 1 },
@@ -1513,6 +1516,12 @@ function formatTime(seconds) {
   const mm = m.toString().padStart(2, "0");
   const ss = s.toString().padStart(2, "0");
   return `${mm}:${ss}`;
+}
+
+function setTimerText(sec) {
+  const txt = formatTime(sec);
+  if (headerTimerEl) headerTimerEl.textContent = txt;
+  if (modalTimerEl) modalTimerEl.textContent = txt;
 }
 
 function setActiveTeamUI() {
@@ -1531,23 +1540,16 @@ function stopTimer() {
 function startTimer(seconds) {
   stopTimer();
   remainingSeconds = seconds;
-
-  const formatted = formatTime(remainingSeconds);
-  // تايمر العنوان فوق
-  if (timerEl) timerEl.textContent = formatted;
-  // تايمر داخل السؤال
-  if (modalTimerEl) modalTimerEl.textContent = formatted;
+  setTimerText(remainingSeconds);
 
   timerIntervalId = setInterval(() => {
     remainingSeconds -= 1;
-
-    const f = formatTime(Math.max(remainingSeconds, 0));
-    if (timerEl) timerEl.textContent = f;
-    if (modalTimerEl) modalTimerEl.textContent = f;
-
     if (remainingSeconds <= 0) {
+      setTimerText(0);
       stopTimer();
       handleTimeUp();
+    } else {
+      setTimerText(remainingSeconds);
     }
   }, 1000);
 }
@@ -1566,7 +1568,6 @@ function getCurrentTeamName() {
 }
 
 function updateLifelinesUI() {
-  // نعرض فقط وسائل مساعدة الفريق الحالي
   lifelineTeamNameEl.textContent = getCurrentTeamName();
   lifelineFiftyCountEl.textContent = lifelines[currentTeam].fifty;
   lifelineCallCountEl.textContent = lifelines[currentTeam].call;
@@ -1578,7 +1579,7 @@ function updateLifelinesUI() {
   });
 }
 
-// ========= انتقال شاشة الفرق → الفئات =========
+// ========= من شاشة الفرق إلى الفئات =========
 toCategoriesBtn.addEventListener("click", () => {
   team1Name = (team1Input.value || "الفريق 1").trim() || "الفريق 1";
   team2Name = (team2Input.value || "الفريق 2").trim() || "الفريق 2";
@@ -1653,12 +1654,12 @@ startGameBtn.addEventListener("click", () => {
   nextStartingTeam = 1;
   setActiveTeamUI();
 
-  // إعادة تعيين وسائل المساعدة
   lifelines[1] = { fifty: 1, call: 1 };
   lifelines[2] = { fifty: 1, call: 1 };
   updateLifelinesUI();
 
   buildBoard();
+  setTimerText(FIRST_CHANCE_SECONDS);
 });
 
 function createTile(cat, qIndex) {
@@ -1701,7 +1702,6 @@ function buildBoard() {
       <div class="column-title">${cat.name}</div>
     `;
 
-    // 3 صفوف: [0,1]  [2,3]  [4,5]
     const indexPairs = [
       [0, 1],
       [2, 3],
@@ -1725,7 +1725,6 @@ function buildBoard() {
   });
 }
 
-// الرجوع من اللوحة إلى اختيار الفئات
 backToCategoriesBtn.addEventListener("click", () => {
   stopTimer();
   questionModal.classList.add("hidden");
@@ -1733,7 +1732,7 @@ backToCategoriesBtn.addEventListener("click", () => {
   categoriesScreen.classList.remove("hidden");
 });
 
-// ========= فتح سؤال من البلاطة =========
+// ========= فتح سؤال =========
 function handleTileClick(tile) {
   if (tile.classList.contains("used")) return;
 
@@ -1772,13 +1771,13 @@ function handleTileClick(tile) {
   });
 
   statusTextEl.textContent = "";
-  closeQuestionBtn.disabled = false; // نخليه يقدر يقفل بعد ما يخلص
+  closeQuestionBtn.disabled = false;
 
   startTimer(FIRST_CHANCE_SECONDS);
   questionModal.classList.remove("hidden");
 }
 
-// ========= عند ضغط خيار =========
+// ========= اختيار إجابة =========
 optionsButtons.forEach((btn) => {
   btn.addEventListener("click", () => handleOptionClick(btn));
 });
@@ -1870,12 +1869,9 @@ function finishQuestion() {
   nextStartingTeam = nextStartingTeam === 1 ? 2 : 1;
 }
 
-// زر إغلاق السؤال
 closeQuestionBtn.addEventListener("click", () => {
   questionModal.classList.add("hidden");
   stopTimer();
-  if (modalTimerEl) modalTimerEl.textContent = "00:00";
-
   phase = "idle";
   currentQuestion = null;
   currentCategoryId = null;
@@ -1911,15 +1907,24 @@ function handleLifelineClick(btn) {
 
 function applyFiftyFifty() {
   const correctIndex = currentQuestion.correct;
-  const wrongButtons = optionsButtons.filter((btn) => {
+
+  // اختَر إجابتين خاطئتين من الموجودة والظاهرة فقط
+  const visibleWrong = optionsButtons.filter((btn) => {
     const idx = parseInt(btn.dataset.index, 10);
-    return idx !== correctIndex;
+    const isVisible = btn.style.display !== "none";
+    return (
+      isVisible &&
+      !btn.disabled &&
+      !Number.isNaN(idx) &&
+      idx !== correctIndex
+    );
   });
 
-  if (wrongButtons.length < 2) return;
+  if (visibleWrong.length <= 1) return;
 
-  const shuffled = [...wrongButtons].sort(() => Math.random() - 0.5);
+  const shuffled = [...visibleWrong].sort(() => Math.random() - 0.5);
   const toHide = shuffled.slice(0, 2);
+
   toHide.forEach((btn) => {
     btn.disabled = true;
     btn.style.opacity = 0.4;
@@ -1933,16 +1938,11 @@ function applyCallFriend() {
     statusTextEl.textContent = "اتصال بصديق فقط في فرصة الفريق الأولى.";
     return;
   }
-  startTimer(CALL_FRIEND_SECONDS); // 1:30
+  startTimer(CALL_FRIEND_SECONDS);
   statusTextEl.textContent = "اتصال بصديق 🔔 لديك دقيقة ونصف للتشاور.";
 }
 
 // ========= تهيئة أولية =========
 updateLifelinesUI();
-console.log("SeenGame-board loaded ✅");
-
-
-
-
-
-
+setTimerText(FIRST_CHANCE_SECONDS);
+console.log("SeenGame loaded ✅");
